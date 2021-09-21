@@ -1,5 +1,5 @@
 
-<form [formGroup]="loginForm" (ngSubmit)="handleLogin()" novalidate>
+<!--<form [formGroup]="loginForm" (ngSubmit)="handleLogin()" novalidate>
 
 
     <div class="col-md-4 offset-md-3">
@@ -23,11 +23,7 @@
                />
                
                <div *ngIf="!userName?.valid && userName.dirty" class="text-danger">
-                   
                 <div *ngIf="userName.errors?.required">User name is required</div>
-                <div *ngIf="userName.errors?.maxlength">Username cannot exceed 10 characters</div>
-                <div *ngIf="userName.errors?.minlength">Minimum characters required is 6</div>
-                <div *ngIf="userName.errors?.pattern">Username should be alphanumeric</div>
                 
                </div>
                We'll never share your USERNAME with anyone else.
@@ -47,12 +43,7 @@
                />
                
                <div *ngIf="!passWord?.valid && passWord.dirty" class="text-danger">
-                   
                 <div *ngIf="passWord.errors?.required">passWord is required</div>
-                <div *ngIf="passWord.errors?.maxlength">passWord cannot exceed 10 characters</div>
-                <div *ngIf="passWord.errors?.minlength">Minimum characters required for passWord is 6</div>
-                <div *ngIf="passWord.errors?.pattern">passWord should be alphanumeric with atleast one special character</div>
-           
                </div>
                 
           </div>
@@ -65,7 +56,59 @@
             >Login</button>
         </div>
     </form>
+-->
     
     
     <!--Screenshot for disabled button-->
    
+    <div class="col-md-6 offset-md-3 mt-5">
+        <div class="card">
+            <h4 class="card-header">Customer Login</h4>
+            <div class="card-body">
+                <div *ngIf="apiResult.error" class="alert alert-danger mt-3" role="alert">
+                    We are unable to process your request. Please try later.
+                 </div>
+                 <div *ngIf="apiResult.success" class="alert alert-success mt-3" role="alert">
+                        Your Login is completed.
+                 </div>
+                <form [formGroup]="loginForm" (ngSubmit)="handleLogin1()">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text"
+                        class="form-control"
+                        id="username" name="username"
+                        aria-describedby="usernameHelp"
+                        placeholder="Enter username"
+                        formControlName="username"
+                        autocomplete="off"/>
+                        <div *ngIf="!userName?.valid && userName.dirty" class="text-danger">
+                            <div *ngIf="userName.errors?.required">User name is required</div>
+                            
+                           </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label mt-4">Password</label>
+                        <input type="password"
+                            class="form-control"
+                             id="password" name="password"
+                        aria-describedby="passwordHelp"
+                         placeholder="Enter password"
+                        formControlName="password"
+                        autocomplete="off"/>
+               
+               <div *ngIf="!passWord?.valid && passWord.dirty" class="text-danger">
+                <div *ngIf="passWord.errors?.required">passWord is required</div>
+               </div>
+                
+          </div>
+                    <div class="col-md-4 offset-md-3">
+                        <button class="btn btn-primary" type ="submit"
+                        
+                          >Login</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+

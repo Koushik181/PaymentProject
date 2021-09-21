@@ -11,14 +11,19 @@ export class NavitemsComponent implements OnInit {
   constructor(){
       this.navitems=[
 
+        {
+          text:'Home',
+          link:'home'
+      },
           {
               text:'Login',
               link:'login'
           },
-          {
-              text:'Dashboard',
-              link:'dashboard'
-          }
+         
+        {
+            text:'CotactUs',
+            link:'contactus'
+        }
       ]
   }
   ngOnInit(): void {
