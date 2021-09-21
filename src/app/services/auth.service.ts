@@ -21,6 +21,7 @@ export class AuthService {
     logout(){
         localStorage.removeItem('jwt');
         localStorage.removeItem('custid');
+        localStorage.removeItem('messagecode');
         this.router.navigate(['/login']);
     }
 

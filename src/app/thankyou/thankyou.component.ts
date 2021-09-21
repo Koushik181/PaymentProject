@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-thankyou',
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ThankyouComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
   handleSubmit(){
-    this.router.navigate(['/login'])
+    this.authService.logout();
+    this.router.navigate(["/home"])
   }
 }

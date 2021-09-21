@@ -1,18 +1,6 @@
 <br>
-<form>
+<form novalidate>
     <div class="col-md-7 offset-md-3">
-
-        <div *ngIf="bicapiResult.error" class="alert alert-danger mt-3" role="alert">
-            Invalid BIC, We are unable to process your request. Please try later.
-         </div>
-       
-         <div *ngIf="accountNameApiResult.error" class="alert alert-danger mt-3" role="alert">
-            We are unable to process your request to the given Account Holder Name Please try later.
-         </div>
-         
-         <div *ngIf="accountNumberApiResult.error" class="alert alert-danger mt-3" role="alert">
-            We are unable to process your request to the given Account Holder Number Please try later.
-         </div>
 
         <div class="container">
             <div class="row">
@@ -22,7 +10,12 @@
                             <input name="recbic" placeholder="Please enter receiver's BIC" type="text" class="form-control"
                                 id="recbic" [(ngModel)]="receiverBIC" (blur)="handleReceiverBIC()" >
                         </div>
+                        <div *ngIf="bicapiResult.error" class="alert alert-danger mt-3" role="alert">
+                            Invalid BIC, We are unable to process your request. Please try later.
+                         </div>
                 </div>
+
+               
                  
                 <div class="col">
                     <div class="mb-3">
@@ -48,6 +41,9 @@
                         [(ngModel)]="receiverAccountHolderName" (blur)="validateReceiverAccountHolderName()">
                     <div id="recHelp" class="form-text"></div>
                 </div>
+                <div *ngIf="accountNameApiResult.error" class="alert alert-danger mt-3" role="alert">
+                    We are unable to process your request to the given Account Holder Name Please try later.
+                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
@@ -57,6 +53,9 @@
                         [(ngModel)]="receiverAccountHolderNumber" (blur)="validateReceiverAccountHolderNumber1()" >
                     <div id="recHelp" class="form-text"></div>
                 </div>
+                <div *ngIf="accountNumberApiResult.error" class="alert alert-danger mt-3" role="alert">
+                    We are unable to process your request to the given Account Holder Number Please try later.
+                 </div>
             </div>
             </div>
 
@@ -72,6 +71,7 @@
                 </div>
                 
             </div>
+            <!--
             <br>
             <div class="row">
                 <div class="col">
@@ -89,12 +89,21 @@
                     </div>
                 </div>
             </div>
-        
+        -->
             
+        
+            <app-dropdown 
+            [schema]="messageCodesDropdownSchema"
+            (handleChange)="messageCodesSelected($event)"></app-dropdown>
+
+            <br>
+
+            <!--
             <br>
             <app-dropdown 
             [schema]="transferTypesDropdownSchema"
             (handleChange)="transferTypesSelected($event)"></app-dropdown>
+            -->
 
 
             <div class="row">
@@ -129,11 +138,18 @@
                         Dashboard</button>
                 </div>
                 <div class="col">
-                    <button type="button" (click)="handleTransaction()" class="btn btn-dark btn-primary">Initiate Transaction</button>
+                    <button type="button" 
+                    
+                    [disabled]="flag1==1 "
+                    
+                    (click)="handleTransaction()" class="btn btn-dark btn-primary">Initiate Transaction</button>
                 </div>
                 <div class="col">
-                    <button type="button" (click)="handleLogout()" class="btn btn-primary btn-danger ">Logout
+                    <button type="button" 
+                   
+                    (click)="handleLogout()" class="btn btn-primary btn-danger ">Logout
                         </button>
+                         
                 </div>
             </div>
         </div>

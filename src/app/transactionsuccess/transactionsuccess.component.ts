@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -9,10 +10,13 @@ import { DataService } from '../services/data.service';
 })
 export class TransactionsuccessComponent implements OnInit {
 
-  message : string;
-  constructor(private dataservice:DataService,private router:Router) {
-    this.message = this.dataservice.messageSelected;
-    this.message = this.message.substring(7);
+ // message : string;
+    message : any;
+  constructor(private authService:AuthService,private dataservice:DataService,private router:Router) {
+   // this.message = this.dataservice.messageSelected;
+   // this.message = this.message.substring(7);
+
+    this.message = localStorage.getItem('messagecode');
    }
 
   ngOnInit(): void {
@@ -22,7 +26,8 @@ export class TransactionsuccessComponent implements OnInit {
   }
 
   handleLogout(){
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(["/home"])
   }
 
 }

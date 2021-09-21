@@ -1,10 +1,11 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BankModel } from '../models/bank.model';
 import { CustomerModel } from '../models/customer.model';
 import { TransferTypeModel } from '../models/transfer.type';
 import { AuthService } from '../services/auth.service';
+
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -32,6 +33,15 @@ export class TransferComponent implements OnInit {
 
   transferTypesDropdownSchema:any;
 
+  messageCodeValue : any;
+
+  messageCodesList:Array<any>;
+
+  messageCodesDropdownSchema:any;
+
+  flag : any;
+
+  flag1 : any;
   options= [
     "CHQB - Beneficiary customer must be paid by cheque only. ",
     "CORT - Payment is made in settlement for a trade.",
@@ -45,7 +55,7 @@ export class TransferComponent implements OnInit {
   ]
   constructor
   (private authService:AuthService,
-    
+
     private transferTypeModel: TransferTypeModel, private customerModel: CustomerModel, private bankModel : BankModel, private dataservice : DataService, private router : Router) { 
    
     //console.log(this.dataservice.transferTypes);
@@ -53,7 +63,10 @@ export class TransferComponent implements OnInit {
     this.amountTransfer = 0;
     this.finalAmount = 0;
    
+    this.flag1=1;
+
     this.transferTypesList = [{name:"SampleDesc1",code:"SampleCode1"},{name:"SampleDesc2",code:"SampleCode2"}];
+    this.messageCodesList = [{name:"SampleDesc1",code:"SampleCode1"},{name:"SampleDesc2",code:"SampleCode2"}];
  
   }
 
@@ -82,6 +95,33 @@ export class TransferComponent implements OnInit {
   
     
 
+
+
+      this.dataservice.getDataFromApi('http://localhost:8080/messages')
+      .subscribe((result:any)=>{
+
+        console.log("here enteredd111111111111111111111111111111111")
+        this.messageCodesList = result.map((item:any)=>{
+          return {name:item.instruction,key:item.messageCode};
+        });
+        console.log(this.messageCodesList)
+        this.messageCodesDropdownSchema = {
+          labelName:"Message Code",
+          selectedValue:"",
+          controlName:"messagecodes",
+          options:this.messageCodesList,
+          defaultLabel:"Select Message Code for transaction"
+        }
+
+        console.log(this.messageCodesDropdownSchema)
+  
+      },err=>{
+        console.log(err);
+      });
+
+
+
+
     this.bicapiResult={
       success:false,
       error:false
@@ -99,6 +139,7 @@ export class TransferComponent implements OnInit {
 
   validateAmount(){
 
+    this.flag1=0;
     console.log(this.messageselectedValue);
     this.dataservice.setMessageCode(this.messageselectedValue);
     console.log(this.dataservice.messageSelected);
@@ -135,6 +176,12 @@ export class TransferComponent implements OnInit {
   }
   handleDropdownChange(){
     console.log("handleDropdownChange"+this.transferTypesDropdownSchema.selectedValue)
+  }
+  messageCodesSelected(data:any){
+    console.log("message code data "+data);
+    this.messageCodeValue=data;
+              
+    localStorage.setItem('messagecode',this.messageCodeValue);
   }
   transferTypesSelected(data:any){
     console.log("data"+data);
@@ -294,26 +341,30 @@ export class TransferComponent implements OnInit {
 
     console.log("Entered herer");
     let payLoad = {
-      "customerId": this.customerModel.senderCustomerData.customerId,
+      "customerId": localStorage.getItem('custid'),
       "userName" : this.customerModel.receiverCustomerData.customerId,
       "clearBalance": this.finalAmount
     }
 
     this.dataservice.postStringApi(url, payLoad).subscribe((result :any) => {
       console.log("SUCCESSS");
+      this.flag1 = 0;
+      this.flag =0;
       console.log(result);
      
 
     }, err => {
       console.log("ERROR");
+      this.flag = 1;
       window.alert("Transaction cannot be processed as sender dont have sufficient funds")
      
     });
 
     console.log(this.receiverBIC);
 
+    if(this.flag == 0){
     
-  this.router.navigate(['/transactionsuccess']);
+  this.router.navigate(['/transactionsuccess']);}
 
   }
   handleDashboard(){
@@ -321,6 +372,7 @@ export class TransferComponent implements OnInit {
   }
 
   handleLogout(){
-    this.router.navigate(['/login']);
+    this.authService.logout();
+    this.router.navigate(["/home"])
   }
 }

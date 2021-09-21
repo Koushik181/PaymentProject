@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navitems',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavitemsComponent implements OnInit {
 
   navitems:Array<any>;
-  constructor(){
+  constructor(private authService:AuthService, private router : Router){
       this.navitems=[
 
         {
@@ -19,6 +21,17 @@ export class NavitemsComponent implements OnInit {
               text:'Login',
               link:'login'
           },
+
+          {
+            text:'Dashboard',
+            link:'dashboard'
+        },
+
+        {
+          text:'Transfer',
+          link:'transfer'
+      },
+      
          
         {
             text:'CotactUs',
@@ -26,6 +39,15 @@ export class NavitemsComponent implements OnInit {
         }
       ]
   }
+
+  loggedIn(){
+    return this.authService.verifyLoggedIn()
+  }
+  logout()
+{
+  this.authService.logout();
+  this.router.navigate(["/home"])
+}
   ngOnInit(): void {
   }
 }

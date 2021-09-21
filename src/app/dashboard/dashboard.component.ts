@@ -87,7 +87,9 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/transfer'])
   }
   handleLogout(){
-    this.router.navigate(['/login'])
+    
+  this.authService.logout();
+  this.router.navigate(["/home"])
   }
 
 }

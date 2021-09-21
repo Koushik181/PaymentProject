@@ -28,9 +28,12 @@
                             <p><span><b>City</b></span>:  {{customerData.customerCity}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span><b>Type</b></span>: 
+                            <p><span><b>Customer Type</b></span>: 
                                 <!-- {{customerType}}-->
-                                {{customerData.customerType}}
+
+                                <span *ngIf="customerData.customerType=='I'">Individual Customer</span>
+                                <span *ngIf="customerData.customerType=='B'">Bank Customer</span>
+                            
                                 
                                 </p>
                         </div>
@@ -39,8 +42,11 @@
                                 
                                 <!--{{overDraft}}
                                 -->
-                                {{customerData.overDraftFlag}}
-                            </p>
+
+                               <span *ngIf="customerData.overDraftFlag==0">Overdraft facility not available</span>
+                            
+                            <span *ngIf="customerData.overDraftFlag==1">"Overdraft facility available"</span>
+                            
                         </div>
                         <div class="bio-row">
                             <p><span><b>BIC</b></span>:  {{customerData.senderBIC}}</p>
