@@ -54,7 +54,7 @@
                     <input type="text" name="recaccounthno" placeholder="Please Enter Receiver's Account Holder Number"
                         class="form-control" id="recaccounthno" aria-describedby="recHelp"
                         autocomplete="off"
-                        [(ngModel)]="receiverAccountHolderNumber" (blur)="validateReceiverAccountHolderNumber1()" >
+                        [(ngModel)]="receiverAccountHolderNumber" (blur)="validateReceiverAccountHolderNumber()" >
                     <div id="recHelp" class="form-text"></div>
                 </div>
                 <div *ngIf="accountNumberApiResult.error" class="alert alert-danger mt-3" role="alert">

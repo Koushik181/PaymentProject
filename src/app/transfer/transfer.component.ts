@@ -83,14 +83,9 @@ export class TransferComponent implements OnInit {
         console.log(err);
       });
   
-    
-
-
-
       this.dataservice.getDataFromApi('http://localhost:8080/messages')
       .subscribe((result:any)=>{
 
-        console.log("here enteredd111111111111111111111111111111111")
         this.messageCodesList = result.map((item:any)=>{
           return {name:item.instruction,key:item.messageCode};
         });
@@ -146,14 +141,8 @@ export class TransferComponent implements OnInit {
 
       this.dataservice.getDataFromApi(transferTypesUrl).subscribe((result :any) => {
         console.log(result);
-       // for(let i=0;i<result.length ;i++){  //How to properly iterate here!!
-       //   }
-
           this.transferTypeModel.transferType = result;
           this.transferTypes = this.transferTypeModel.transferType;
-          console.log("hiii"+this.transferTypeModel.transferType);
-        console.log("hereeee"+this.transferTypeModel.transferType[1].transferTypeCode)
-        console.log("hereeee2"+this.transferTypeModel.transferType[1].transferTypeDescription)
         
       }, err => {
         console.log("Couldn't load transfertypes from backend, due to unexpected error");
@@ -242,7 +231,7 @@ export class TransferComponent implements OnInit {
   }
 
   
-  validateReceiverAccountHolderNumber1(){
+  validateReceiverAccountHolderNumber(){
     let url='http://localhost:8080/validateAccountHolderNumber'
 
 
@@ -283,47 +272,7 @@ export class TransferComponent implements OnInit {
 
     
     }
-
-
-  validateReceiverAccountHolderNumber(){
-    let url='http://localhost:8080/validateAccountHolderNumber'
-
-
-    let payLoad = {
-      "customerId": this.receiverAccountHolderNumber,
-      "customerType" : this.customerModel.senderCustomerData.customerType
-    }
-
-    //here this has to change from customermodel to getapi
-
-
-    this.dataservice.postApi(url, payLoad).subscribe((result :any) => {
-      console.log("SUCCESSS");
-      console.log(result);
-      
-      this.customerModel.receiverCustomerData = result;
-
-      console.log(this.customerModel.receiverCustomerData.customerType)
-
-      if(this.customerModel.receiverCustomerData.customerType=='I'){
-        this.trasnfertypecode = "Customer Transfer";
-      }else{
-        this.trasnfertypecode = "Bank Transfer for Own Account";
-      }
-      this.accountNumberApiResult.success=true;
-      this.accountNumberApiResult.error =false;
-      console.log(this.accountNumberApiResult);
-
-    }, err => {
-      console.log("ERROR");
-      this.accountNumberApiResult.success=false;
-      this.accountNumberApiResult.error =true;
-      console.log(this.accountNumberApiResult);
-    });
-
-    console.log(this.receiverBIC);
-
-  }
+  
   handleTransaction()
   {
 
