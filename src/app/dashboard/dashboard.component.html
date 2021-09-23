@@ -5,7 +5,7 @@
             <div class="panel">
 
                 <footer class="panel-footer">
-                    
+
                 </footer>
             </div>
             <div class="panel">
@@ -22,34 +22,29 @@
                             <p><span><b>Name</b></span>: {{customerData.accountHolderName}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span><b>Balance</b></span>:  {{customerData.clearBalance}}</p>
+                            <p><span><b>Balance</b></span>: {{customerData.clearBalance}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span><b>City</b></span>:  {{customerData.customerCity}}</p>
+                            <p><span><b>City</b></span>: {{customerData.customerCity}}</p>
                         </div>
                         <div class="bio-row">
-                            <p><span><b>Customer Type</b></span>: 
-                                <!-- {{customerType}}-->
+                            <p><span><b>Customer Type</b></span>:
 
                                 <span *ngIf="customerData.customerType=='I'">Individual Customer</span>
                                 <span *ngIf="customerData.customerType=='B'">Bank Customer</span>
-                            
-                                
-                                </p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span><b>OverDraft</b></span>: 
-                                
-                                <!--{{overDraft}}
-                                -->
 
-                               <span *ngIf="customerData.overDraftFlag==0">Overdraft facility not available</span>
-                            
-                            <span *ngIf="customerData.overDraftFlag==1">"Overdraft facility available"</span>
-                            
+
+                            </p>
                         </div>
                         <div class="bio-row">
-                            <p><span><b>BIC</b></span>:  {{customerData.senderBIC}}</p>
+                            <p><span><b>OverDraft</b></span>:
+                                <span *ngIf="customerData.overDraftFlag==0">Overdraft facility not available</span>
+
+                                <span *ngIf="customerData.overDraftFlag==1">"Overdraft facility available"</span>
+
+                        </div>
+                        <div class="bio-row">
+                            <p><span><b>BIC</b></span>: {{customerData.senderBIC}}</p>
                         </div>
                     </div>
                 </div>

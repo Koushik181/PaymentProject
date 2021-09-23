@@ -9,12 +9,12 @@ import { AuthService } from '../services/auth.service';
 })
 export class ThankyouComponent implements OnInit {
 
-  constructor(private authService:AuthService,private router:Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  handleSubmit(){
+  handleSubmit() {
     this.authService.logout();
     this.router.navigate(["/home"])
   }

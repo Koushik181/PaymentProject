@@ -10,22 +10,19 @@ import { DataService } from '../services/data.service';
 })
 export class TransactionsuccessComponent implements OnInit {
 
- // message : string;
-    message : any;
-  constructor(private authService:AuthService,private dataservice:DataService,private router:Router) {
-   // this.message = this.dataservice.messageSelected;
-   // this.message = this.message.substring(7);
+  message: any;
+  constructor(private authService: AuthService, private dataservice: DataService, private router: Router) {
 
     this.message = localStorage.getItem('messagecode');
-   }
+  }
 
   ngOnInit(): void {
   }
-  handleDashboard(){
+  handleDashboard() {
     this.router.navigate(['/dashboard']);
   }
 
-  handleLogout(){
+  handleLogout() {
     this.authService.logout();
     this.router.navigate(["/home"])
   }

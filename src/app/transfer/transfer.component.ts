@@ -89,6 +89,7 @@ export class TransferComponent implements OnInit {
         this.messageCodesList = result.map((item:any)=>{
           return {name:item.instruction,key:item.messageCode};
         });
+        console.log("HOIOOOOOOOOOO")
         console.log(this.messageCodesList)
         this.messageCodesDropdownSchema = {
           labelName:"Message Code",

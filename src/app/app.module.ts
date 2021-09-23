@@ -11,13 +11,10 @@ import { RouterModule } from '@angular/router';
 import { NavitemsComponent } from './navitems/navitems.component';
 import { HeaderComponent } from './header/header.component';
 import { TransferComponent } from './transfer/transfer.component';
-import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { DataService } from './services/data.service';
 import { CustomerModel } from './models/customer.model';
 import { BankModel } from './models/bank.model';
-import { JWTTokenService } from './services/jwt.token.service';
-import { LocalStorageService } from './services/local.storage.service';
 import { TransferTypeModel } from './models/transfer.type';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { NumbersOnlyDirective } from './commonDirectives/numbersonly.directive';
@@ -36,7 +33,6 @@ import { TokenInterceptorService } from './services/token.interceptor.service';
     NavitemsComponent,
     HeaderComponent,
     TransferComponent,
-    AboutusComponent,
     ContactusComponent,
     DropdownComponent,
     NumbersOnlyDirective,
@@ -78,7 +74,7 @@ import { TokenInterceptorService } from './services/token.interceptor.service';
 
     ])
   ],
-  providers: [DataService,JWTTokenService,LocalStorageService,CustomerModel,BankModel,TransferTypeModel,AuthService
+  providers: [DataService,CustomerModel,BankModel,TransferTypeModel,AuthService
   ,AuthorizeGuard,
 {
   provide: HTTP_INTERCEPTORS,

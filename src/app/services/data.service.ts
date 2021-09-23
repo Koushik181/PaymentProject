@@ -11,7 +11,6 @@ export class DataService {
     constructor(private transferTypeModel : TransferTypeModel, private http:HttpClient){
      
       this.messageSelected='';
-   //  console.log(this.transferTypes);
     }
 
     setMessageCode(data : string){

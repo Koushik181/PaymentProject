@@ -32,18 +32,9 @@ export class AuthService {
       'customerId':localStorage.getItem('custid')
     }
    this.postApi(url,payLoad).subscribe((result :any) => {
-     
-
-        
     console.log(result);
 
       this.customerData = result;
-
-
-        //this.customerModel.senderCustomerData = result;
-       // console.log(this.customerModel.senderCustomerData)
-
-       
 
       }, err => {
         console.log("ERROR");
