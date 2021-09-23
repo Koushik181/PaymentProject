@@ -42,17 +42,7 @@ export class TransferComponent implements OnInit {
   flag : any;
 
   flag1 : any;
-  options= [
-    "CHQB - Beneficiary customer must be paid by cheque only. ",
-    "CORT - Payment is made in settlement for a trade.",
-    "HOLD - Beneficiary customer or claimant will call upon identification.",
-    "INTC - Payment between two companies that belongs to the same group.",
-    "BHOB - Please advise the intermediary institution by phone.",
-    "PHOI - Please advise the intermediary by phone.",
-    "PHON - Please advise the account with institution by phone.",
-    "REPA - Payments has a related e-Payments reference.",
-    "SDVA - Payment must be executed with same day value to the"
-  ]
+ 
   constructor
   (private authService:AuthService,
 
@@ -110,7 +100,7 @@ export class TransferComponent implements OnInit {
           selectedValue:"",
           controlName:"messagecodes",
           options:this.messageCodesList,
-          defaultLabel:"Select Message Code for transaction"
+          defaultLabel:"Select Message Code for Transaction"
         }
 
         console.log(this.messageCodesDropdownSchema)

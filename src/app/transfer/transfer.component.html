@@ -8,7 +8,9 @@
                         <div class="mb-3">
                             <label for="recbic" class="form-label"><b>Receiver BIC</b></label>
                             <input name="recbic" placeholder="Please enter receiver's BIC" type="text" class="form-control"
-                                id="recbic" [(ngModel)]="receiverBIC" (blur)="handleReceiverBIC()" >
+                                id="recbic"
+                                autocomplete="off"
+                                [(ngModel)]="receiverBIC" (blur)="handleReceiverBIC()" >
                         </div>
                         <div *ngIf="bicapiResult.error" class="alert alert-danger mt-3" role="alert">
                             Invalid BIC, We are unable to process your request. Please try later.
@@ -38,6 +40,7 @@
                     <label for="recaccounthn" class="form-label"><b>Receiver Account Name</b></label>
                     <input type="text" name="recaccounthn" placeholder="Please Enter Receiver's Account Holder Name"
                         class="form-control" id="recaccounthn" aria-describedby="recHelp"
+                        autocomplete="off"
                         [(ngModel)]="receiverAccountHolderName" (blur)="validateReceiverAccountHolderName()">
                     <div id="recHelp" class="form-text"></div>
                 </div>
@@ -50,6 +53,7 @@
                     <label for="recaccounthno" class="form-label"><b>Receiver Account Number</b></label>
                     <input type="text" name="recaccounthno" placeholder="Please Enter Receiver's Account Holder Number"
                         class="form-control" id="recaccounthno" aria-describedby="recHelp"
+                        autocomplete="off"
                         [(ngModel)]="receiverAccountHolderNumber" (blur)="validateReceiverAccountHolderNumber1()" >
                     <div id="recHelp" class="form-text"></div>
                 </div>
@@ -71,25 +75,7 @@
                 </div>
                 
             </div>
-            <!--
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="msgcode" class="form-label"><b>Message Code</b></label>
-                        <select id="msgcode" name="msgcode" class="form-select" 
-                        [(ngModel)]= "messageselectedValue"
-                        aria-label="Default select example"
-                         >
-                            <option selected><b>Select the message code</b></option>
-                            <option *ngFor="let option of options" [value]="option">
-                                {{option}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        -->
+         
             
         
             <app-dropdown 
@@ -97,14 +83,6 @@
             (handleChange)="messageCodesSelected($event)"></app-dropdown>
 
             <br>
-
-            <!--
-            <br>
-            <app-dropdown 
-            [schema]="transferTypesDropdownSchema"
-            (handleChange)="transferTypesSelected($event)"></app-dropdown>
-            -->
-
 
             <div class="row">
                 <div class="col">
@@ -155,85 +133,3 @@
         </div>
     </div>
 </form>
-<!--
-
-<br>
-<form>
-    <div class="col-md-7 offset-md-3">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                        <div class="mb-3">
-                            <label for="recbic" class="form-label"><b>Receiver BIC</b></label>
-                            <input name="recbic" placeholder="Please enter receiver's BIC" type="text" class="form-control"
-                                id="recbic" [(ngModel)]="receiverBIC" (blur)="handleReceiverBIC()" >
-                        </div>
-                </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="recaccname" class="form-label"><b>Receiver Account Name</b></label>
-                        <input name="recaccname" placeholder="Please enter receiver's name" type="text"
-                            class="form-control" id="recaccname">
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                <div class="mb-3">
-                    <label for="recaccountno" class="form-label"><b>Receiver Account No</b></label>
-                    <input type="text" name="recaccountno" placeholder="Please enter receiver's account number"
-                        class="form-control" id="recaccno" aria-describedby="recHelp">
-                    <div id="recHelp" class="form-text"></div>
-                </div>
-            </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="amount" class="form-label"><b>Amount</b></label>
-                        <input name="amount" placeholder="Please enter the amount" type="text" class="form-control"
-                            id="amount">
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="msgcode" class="form-label"><b>Message Code</b></label>
-                        <select id="msgcode" name="msgcode" class="form-select" aria-label="Default select example"
-                         >
-                            <option selected><b>Select the message code</b></option>
-                            <option *ngFor="let option of options" [value]="option">
-                                {{option}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-3">
-                        <label for="recbic" class="form-label"><b>Tranfer type Code</b></label>
-                        <select id="transfertypecode" name="transfertypecode" class="form-select"
-                            aria-label="Default select example">
-                            <option selected><b>Select the transfer type code</b></option>
-                            <option value="B">B-Bank to Bank Tranfer</option>
-                            <option value="C">C-Customer to Customer Transfer</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <button type="button" (click)="handleDashboard()" class="btn btn-primary btn-danger ">Go to
-                        Dashboard</button>
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn btn-dark btn-primary">Initiate Transaction</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-
--->
